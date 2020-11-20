@@ -1,0 +1,46 @@
+<!-- 
+<ul>
+    <li *ngFor="let player of players;">
+        {{player.username}}
+    </li>
+</ul> -->
+<!-- 
+<table mat-table>
+    <tr>
+        <th>Handle</th>
+        <th>Games</th>
+        <th>Professional</th>
+        <th>Twitter</th>
+    </tr>
+    <tr *ngFor="let player of players">
+        <td>{{player.username}}</td>
+        <td>Apex</td>
+        <td>{{player.is_pro}}</td>
+        <td>{{player.twitter}}</td>
+    </tr>
+</table> -->
+
+<div class="roster_container">
+    <mat-table [dataSource]="players">
+        <ng-container matColumnDef="username">
+            <mat-header-cell *matHeaderCellDef><strong>Username</strong></mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.username}}</mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="twitch">
+            <mat-header-cell *matHeaderCellDef><strong>Twitch</strong></mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.twitch}}
+                <!-- <mat-icon *ngIf="row.is_pro"aria-hidden="false" aria-label="tick">checkmark</mat-icon> -->
+                <!-- <span *ngIf="!row.is_pro">No</span> -->
+            </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="twitter">
+            <mat-header-cell *matHeaderCellDef><strong>Twitter</strong></mat-header-cell>
+            <mat-cell *matCellDef="let row">@{{row.twitter}}</mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="['username', 'twitch', 'twitter']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['username', 'twitch', 'twitter']"></mat-row>
+    </mat-table>
+</div>
